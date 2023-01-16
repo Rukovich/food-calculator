@@ -1,4 +1,5 @@
-function tabs() {
+'use strict';
+export function tabs() {
   // Tabs
 
   let tabs = document.querySelectorAll('.tabheader__item'),
@@ -39,5 +40,4 @@ function tabs() {
 }
 
 // module.exports = tabs;
-
-tabs();
+// tabs();

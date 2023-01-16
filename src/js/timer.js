@@ -1,4 +1,5 @@
-function timer() {
+'use strict';
+export function timer() {
   // Timer
 
   const deadline = '2023-06-11';
@@ -54,5 +55,4 @@ function timer() {
   setClock('.timer', deadline);
 }
 // module.exports = timer;
-
-timer();
+// timer();

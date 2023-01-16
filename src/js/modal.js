@@ -1,4 +1,5 @@
-function modal() {
+'use strict';
+export function modal() {
   // Modal
 
   const modalTrigger = document.querySelectorAll('[data-modal]');
@@ -52,7 +53,7 @@ function modal() {
   window.addEventListener('scroll', showModalByScroll);
 
   //Forms server
-  const forms = this.document.querySelectorAll('form');
+  const forms = document.querySelectorAll('form');
 
   const message = {
     loading: 'img/form/spinner.svg', //Спиннер загрузки
@@ -160,4 +161,4 @@ function modal() {
 }
 // module.exports = modal;
 
-modal();
+// modal();

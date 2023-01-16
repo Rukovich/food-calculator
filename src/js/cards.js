@@ -1,4 +1,5 @@
-function cards() {
+'use strict';
+export function cards() {
   //Используем классы для карточек
 
   class menuCard {
@@ -69,4 +70,4 @@ function cards() {
 }
 // module.exports = cards;
 
-cards();
+// cards();
