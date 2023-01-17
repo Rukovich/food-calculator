@@ -23,8 +23,17 @@ window.addEventListener('DOMContentLoaded', () => {
   );
   cards();
   modal('[data-modal]', '.modal', modalTimerId);
-  slider();
-  timer('.timer', '2023 - 06 - 11');
+  slider({
+    container: '.offer__slide',
+    prevArrow: '.offer__slider-prev',
+    nextArrow: '.offer__slider-next',
+    totalCounter: '#total',
+    currentCounter: '#current',
+    slide: '.offer__slider',
+    wrapper: '.offer__slider-wrapper',
+    field: '.offer__slider-inner',
+  });
+  timer('.timer', '06-06-2023');
   calc();
   forms('form', modalTimerId);
 });

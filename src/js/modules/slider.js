@@ -1,19 +1,27 @@
-'use strict';
-export function slider() {
+export function slider({
+  container,
+  slide,
+  nextArrow,
+  prevArrow,
+  totalCounter,
+  currentCounter,
+  wrapper,
+  field,
+}) {
   //Slider 1
 
-  const slides = document.querySelectorAll('.offer__slide');
-  const prev = document.querySelector('.offer__slider-prev');
-  const next = document.querySelector('.offer__slider-next');
+  const slides = document.querySelectorAll(container);
+  const prev = document.querySelector(prevArrow);
+  const next = document.querySelector(nextArrow);
   //элементы для получения счетчика:
-  const total = document.querySelector('#total');
-  const current = document.querySelector('#current');
+  const total = document.querySelector(totalCounter);
+  const current = document.querySelector(currentCounter);
   //Для сложного слайдера
-  const slidesWrapper = document.querySelector('.offer__slider-wrapper');
-  const slidesField = document.querySelector('.offer__slider-inner');
+  const slidesWrapper = document.querySelector(wrapper);
+  const slidesField = document.querySelector(field);
   const width = window.getComputedStyle(slidesWrapper).width;
   //Для навигации слайдера
-  const slider = document.querySelector('.offer__slider');
+  const slider = document.querySelector(slide);
 
   let slideIndex = 1; //индекс, который определяет текущее положение слайдера
   let offset = 0; //отступ

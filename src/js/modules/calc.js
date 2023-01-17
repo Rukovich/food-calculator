@@ -1,12 +1,8 @@
-'use strict';
 export function calc() {
   //Калькулятор
 
   const result = document.querySelector('.calculating__result span');
 
-  // let sex = 'female',
-  // height, weight, age,
-  // ratio = 1.375;
   let sex, height, weight, age, ratio;
 
   //Используем localStorage для запоминания данных
