@@ -1,62 +1,12 @@
-'use strict';
-export function modal() {
-  // Modal
+import { closeModal, openModal } from './modal';
+import { postData } from '../services/services';
 
-  const modalTrigger = document.querySelectorAll('[data-modal]');
-  const modal = document.querySelector('.modal');
-
-  function openModal() {
-    modal.classList.add('show');
-    modal.classList.remove('hide');
-    // Либо вариант с toggle - но тогда назначить класс в верстке
-    document.body.style.overflow = 'hidden';
-    clearInterval(modalTimerId);
-  }
-
-  modalTrigger.forEach((btn) => {
-    btn.addEventListener('click', openModal);
-  });
-
-  function closeModal() {
-    modal.classList.add('hide');
-    modal.classList.remove('show');
-    // Либо вариант с toggle - но тогда назначить класс в верстке
-    document.body.style.overflow = '';
-  }
-
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal || e.target.getAttribute('data-close') === '') {
-      closeModal();
-    }
-  });
-
-  document.addEventListener('keydown', (e) => {
-    if (e.code === 'Escape' && modal.classList.contains('show')) {
-      closeModal();
-    }
-  });
-
-  // Модальное окно при прокрутке вниз страницы
-
-  const modalTimerId = setTimeout(openModal, 50000);
-
-  function showModalByScroll() {
-    if (
-      window.pageYOffset + document.documentElement.clientHeight >=
-      document.documentElement.scrollHeight - 1
-    ) {
-      openModal();
-      window.removeEventListener('scroll', showModalByScroll);
-    }
-  }
-
-  window.addEventListener('scroll', showModalByScroll);
-
+export function forms(formSelector, modalTimerId) {
   //Forms server
-  const forms = document.querySelectorAll('form');
+  const forms = document.querySelectorAll(formSelector);
 
   const message = {
-    loading: 'img/form/spinner.svg', //Спиннер загрузки
+    loading: 'src/img/form/spinner.svg', //Спиннер загрузки
     success: 'Спасибо! Скоро мы с вами свяжемся',
     failure: 'Что-то пошло не так...',
   };
@@ -64,23 +14,6 @@ export function modal() {
   forms.forEach((item) => {
     bindPostData(item);
   });
-
-  //Общение с сервером
-  /*
-    async - говорит, что внутри функции будет какой-то асинхронный код
-    awayt - ставим перед теми операциями, корторые необходимо дождаться
-  */
-  const postData = async (url, data) => {
-    const res = await fetch(url, {
-      headers: {
-        'Content-type': 'application/json',
-      },
-      method: 'POST',
-      body: data,
-    });
-
-    return await res.json(); //Обрабатываем как JSON формат
-  };
 
   function bindPostData(form) {
     //submit срабатывает каждый раз, когда мы отправляем какую-то форму
@@ -91,9 +24,9 @@ export function modal() {
       let statusMessage = document.createElement('img');
       statusMessage.src = message.loading;
       statusMessage.style.cssText = `
-        display: block;
-        margin: 0 auto;
-      `;
+          display: block;
+          margin: 0 auto;
+        `;
       //Добавляем спиннер на страницу
       form.insertAdjacentElement('afterend', statusMessage);
 
@@ -129,17 +62,17 @@ export function modal() {
     prevModalDialog.classList.add('hide');
 
     //Открываем структуру модального окна
-    openModal();
+    openModal('.modal', modalTimerId);
 
     //Формируем новую структуру
     const thanksModal = document.createElement('div');
     thanksModal.classList.add('modal__dialog');
     thanksModal.innerHTML = `
-    <div class="modal__content">
-        <div class="modal__close" data-close>×</div>
-        <div class="modal__title">${message}</div>
-    </div>
-    `;
+      <div class="modal__content">
+          <div class="modal__close" data-close>×</div>
+          <div class="modal__title">${message}</div>
+      </div>
+      `;
 
     //Получаем модальное окно
     document.querySelector('.modal').append(thanksModal);
@@ -151,14 +84,11 @@ export function modal() {
       //Открываем модальное окно
       prevModalDialog.classList.add('show');
       prevModalDialog.classList.remove('hide');
-      closeModal();
-    }, 4000);
+      closeModal('.modal');
+    }, 3000);
   }
 
   fetch('http://localhost:3000/menu')
     .then((data) => data.json())
     .then((res) => console.log(res));
 }
-// module.exports = modal;
-
-// modal();
