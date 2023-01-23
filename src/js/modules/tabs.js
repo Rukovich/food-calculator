@@ -12,8 +12,8 @@ export function tabs(
 
   function hideTabContent() {
     tabsContent.forEach((item) => {
-      item.classList.add('hide');
-      item.classList.remove('show', 'fade');
+      item.classList.add("hide");
+      item.classList.remove("show", "fade");
     });
 
     tabs.forEach((item) => {
@@ -22,15 +22,15 @@ export function tabs(
   }
 
   function showTabContent(i = 0) {
-    tabsContent[i].classList.add('show', 'fade');
-    tabsContent[i].classList.remove('hide');
+    tabsContent[i].classList.add("show", "fade");
+    tabsContent[i].classList.remove("hide");
     tabs[i].classList.add(activeClass);
   }
 
   hideTabContent();
   showTabContent();
 
-  tabsParent.addEventListener('click', function (event) {
+  tabsParent.addEventListener("click", function (event) {
     const target = event.target;
     if (target && target.classList.contains(tabsSelector.slice(1))) {
       tabs.forEach((item, i) => {
@@ -42,6 +42,3 @@ export function tabs(
     }
   });
 }
-
-// module.exports = tabs;
-// tabs();
