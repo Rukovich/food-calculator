@@ -6,9 +6,9 @@
 const postData = async (url, data) => {
   const res = await fetch(url, {
     headers: {
-      'Content-type': 'application/json',
+      "Content-type": "application/json",
     },
-    method: 'POST',
+    method: "POST",
     body: data,
   });
 
@@ -23,7 +23,8 @@ const getResource = async (url) => {
     throw new Error(`Could not fetch ${url}, status ${res.status}`); //Создаем объект ошибки
   }
 
-  return await res.json(); //Обрабатываем как JSON формат
+  //Обрабатываем как JSON формат
+  return await res.json();
 };
 
 export { postData };

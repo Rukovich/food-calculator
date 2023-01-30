@@ -58,6 +58,3 @@ export function cards() {
     });
   });
 }
-// module.exports = cards;
-
-// cards();
